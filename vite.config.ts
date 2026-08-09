@@ -1,7 +1,6 @@
 import path from "path"
 import react from "@vitejs/plugin-react"
 import { defineConfig, loadEnv } from "vite"
-import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -10,9 +9,18 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, __dirname, '')
   const apiKey = env.KIMI_API_KEY || ''
 
+  // 开发工具插件仅在 dev 环境加载
+  const inspectPlugin = () => {
+    if (mode === 'development') {
+      const { inspectAttr } = require('kimi-plugin-inspect-react')
+      return inspectAttr()
+    }
+    return null
+  }
+
   return {
     base: './',
-    plugins: [inspectAttr(), react()],
+    plugins: [inspectPlugin(), react()].filter(Boolean),
     server: {
       port: 7100,
       proxy: apiKey

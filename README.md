@@ -109,6 +109,22 @@ npm run build   # 产物在 dist/
 
 ---
 
+## 公开 Demo 部署
+
+参赛材料需要 `https://` 形式 Demo 链接，推荐用 Vercel 静态部署：
+
+```bash
+# 1. 把仓库 push 到 GitHub
+# 2. 在 https://vercel.com 导入仓库
+# 3. 获得类似 https://goai-muninn-xxx.vercel.app 的链接
+```
+
+详细步骤见 [`docs/DEPLOYMENT.md`](./docs/DEPLOYMENT.md)。
+
+预计算脚本模式下所有 Demo 功能均可完整演示；实时 LLM 需要后端代理（方案 B）。
+
+---
+
 ## 仓库结构
 
 ```
